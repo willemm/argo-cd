@@ -16,6 +16,10 @@ tests:
     message: 'MachineDeployment is paused'
   inputPath: testdata/suspended_paused.yaml
 - healthStatus:
+    status: Processing
+    message: 'Waiting for controller'
+  inputPath: testdata/healthy_newgeneration.yaml
+- healthStatus:
     status: Healthy
     message: 'Machines are running under this deployment'
   inputPath: testdata/healthy_provisioned.yaml

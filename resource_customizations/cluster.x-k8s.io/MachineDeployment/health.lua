@@ -8,6 +8,15 @@ if obj.spec.paused ~= nil and obj.spec.paused then
     return hs
 end
 
+if obj.status ~= nil then
+    observedGeneration = tonumber(obj.status.observedGeneration)
+    if observedGeneration < obj.metadata.generation then
+        hs.status = "Progressing"
+        hs.message = "Waiting for controller"
+        return hs
+    end
+end
+
 if obj.status ~= nil and obj.status.phase ~= nil then
     if obj.status.phase == "Running" then
         hs.status = "Healthy"
